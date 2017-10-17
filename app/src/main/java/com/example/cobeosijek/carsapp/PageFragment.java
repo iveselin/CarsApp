@@ -1,3 +1,4 @@
+
 package com.example.cobeosijek.carsapp;
 
 
@@ -12,6 +13,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.cobeosijek.carsapp.utilities.CarMaker;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by cobeosijek on 17/10/2017.
@@ -49,7 +53,18 @@ public class PageFragment extends Fragment implements CarAdapter.OnItemClickList
 
         carListRV = view.findViewById(R.id.carList);
         carAdapter = new CarAdapter();
-        carAdapter.setCarList(CarMaker.createCars());
+        // TODO: 17.10.2017. put this in another method, or even class
+        if (mPage == 1) {
+            carAdapter.setCarList(CarMaker.createCars());
+        } else {
+            List<Car> favourites = new ArrayList<>();
+            for (Car car : CarMaker.createCars()) {
+                if (car.isFavourite()) {
+                    favourites.add(car);
+                }
+            }
+            carAdapter.setCarList(favourites);
+        }
         layoutManager = new LinearLayoutManager(container.getContext());
         itemDecoration = new DividerItemDecoration(container.getContext(), DividerItemDecoration.VERTICAL);
 
@@ -64,7 +79,6 @@ public class PageFragment extends Fragment implements CarAdapter.OnItemClickList
 
     @Override
     public void onCarClick(View view, int position) {
-        Toast.makeText(getActivity(), "Clicked on position: " + position, Toast.LENGTH_SHORT).show();
-        // TODO: 17/10/2017 why yu no wrk 
+        Toast.makeText(getActivity(), "Clicked on position: " + (position + 1), Toast.LENGTH_SHORT).show();
     }
 }

@@ -21,9 +21,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void setUI() {
-        submitBTN = (Button) findViewById(R.id.submitLogin);
-        emailInputET = (EditText) findViewById(R.id.emailInput);
-        passwordInputET = (EditText) findViewById(R.id.passwordInput);
+        submitBTN = findViewById(R.id.submitLogin);
+        emailInputET = findViewById(R.id.emailInput);
+        passwordInputET = findViewById(R.id.passwordInput);
 
         submitBTN.setOnClickListener(this);
     }
@@ -47,6 +47,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
 
+        emailInputET.setText("");
+        passwordInputET.setText("");
         startActivity(CarsActivity.getLaunchIntent(this, email));
     }
 

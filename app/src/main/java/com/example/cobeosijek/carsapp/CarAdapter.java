@@ -59,28 +59,26 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
 
     static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private final OnItemClickListener listener;
+        private CarAdapter.OnItemClickListener listener;
         ImageView carImage;
         TextView carName;
         TextView carAge;
 
-        public ViewHolder(View itemView, OnItemClickListener listener) {
+        public ViewHolder(View itemView, CarAdapter.OnItemClickListener listener) {
             super(itemView);
 
             this.carImage = itemView.findViewById(R.id.carImage);
             this.carName = itemView.findViewById(R.id.carName);
             this.carAge = itemView.findViewById(R.id.carAge);
-
             this.listener = listener;
+
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-
-            Toast.makeText(view.getContext(), "Clicked on item", Toast.LENGTH_SHORT).show();
             if (listener != null) {
                 listener.onCarClick(view, getAdapterPosition());
-
             }
         }
     }
