@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,12 @@ import java.util.List;
 
 public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
 
+    public interface OnItemClickListener {
+        void onCarClick(View view, int position);
+    }
+
     private List<Car> cars = new ArrayList<>();
+    private OnItemClickListener onItemClickListener;
 
     public void setCarList(List<Car> carList) {
         cars.clear();
@@ -24,12 +30,16 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
         notifyDataSetChanged();
     }
 
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        onItemClickListener = listener;
+    }
+
     @Override
     public CarAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View carView = inflater.inflate(R.layout.item_car, parent, false);
 
-        return new ViewHolder(carView);
+        return new ViewHolder(carView, onItemClickListener);
     }
 
     @Override
@@ -46,18 +56,32 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
         return cars.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
 
+    static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        private final OnItemClickListener listener;
         ImageView carImage;
         TextView carName;
         TextView carAge;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, OnItemClickListener listener) {
             super(itemView);
 
             this.carImage = itemView.findViewById(R.id.carImage);
             this.carName = itemView.findViewById(R.id.carName);
             this.carAge = itemView.findViewById(R.id.carAge);
+
+            this.listener = listener;
+        }
+
+        @Override
+        public void onClick(View view) {
+
+            Toast.makeText(view.getContext(), "Clicked on item", Toast.LENGTH_SHORT).show();
+            if (listener != null) {
+                listener.onCarClick(view, getAdapterPosition());
+
+            }
         }
     }
 }

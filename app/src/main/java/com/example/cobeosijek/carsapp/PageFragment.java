@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.cobeosijek.carsapp.utilities.CarMaker;
 
@@ -16,7 +17,7 @@ import com.example.cobeosijek.carsapp.utilities.CarMaker;
  * Created by cobeosijek on 17/10/2017.
  */
 
-public class PageFragment extends Fragment {
+public class PageFragment extends Fragment implements CarAdapter.OnItemClickListener {
 
     public static final String ARG_PAGE = "ARG_PAGE";
 
@@ -56,6 +57,14 @@ public class PageFragment extends Fragment {
         carListRV.setLayoutManager(layoutManager);
         carListRV.setAdapter(carAdapter);
 
+        carAdapter.setOnItemClickListener(this);
+
         return view;
+    }
+
+    @Override
+    public void onCarClick(View view, int position) {
+        Toast.makeText(getActivity(), "Clicked on position: " + position, Toast.LENGTH_SHORT).show();
+        // TODO: 17/10/2017 why yu no wrk 
     }
 }
