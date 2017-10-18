@@ -1,5 +1,5 @@
 
-package com.example.cobeosijek.carsapp.fragments;
+package com.example.cobeosijek.carsapp.car_showroom;
 
 
 import android.os.Bundle;
@@ -12,11 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.cobeosijek.carsapp.Car;
-import com.example.cobeosijek.carsapp.adapters.CarAdapter;
-import com.example.cobeosijek.carsapp.CarDetailsActivity;
+import com.example.cobeosijek.carsapp.car_details.CarDetailsActivity;
 import com.example.cobeosijek.carsapp.R;
-import com.example.cobeosijek.carsapp.utilities.CarMaker;
+import com.example.cobeosijek.carsapp.car_showroom.utils.CarMaker;
 import com.example.cobeosijek.carsapp.utilities.Constants;
 
 import java.util.ArrayList;

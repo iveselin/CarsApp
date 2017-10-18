@@ -1,4 +1,4 @@
-package com.example.cobeosijek.carsapp.adapters;
+package com.example.cobeosijek.carsapp.car_showroom;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.cobeosijek.carsapp.Car;
 import com.example.cobeosijek.carsapp.R;
 import com.squareup.picasso.Picasso;
 
@@ -51,7 +50,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
 
         holder.carName.setText(car.getCarModel());
         holder.carAge.setText("Production year: " + car.getCarAge());
-        Picasso.with(holder.itemView.getContext()).load(car.getCarImages().get(0)).resize(300,200).into(holder.carImage);
+        Picasso.with(holder.itemView.getContext()).load(car.getCarImages().get(0)).resize(300, 200).into(holder.carImage);
 
     }
 

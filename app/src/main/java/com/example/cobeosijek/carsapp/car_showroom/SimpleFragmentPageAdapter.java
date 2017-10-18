@@ -1,4 +1,4 @@
-package com.example.cobeosijek.carsapp.adapters;
+package com.example.cobeosijek.carsapp.car_showroom;
 
 
 import android.support.v4.app.Fragment;

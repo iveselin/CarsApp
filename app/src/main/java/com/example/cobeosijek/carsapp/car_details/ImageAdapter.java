@@ -1,4 +1,4 @@
-package com.example.cobeosijek.carsapp.adapters;
+package com.example.cobeosijek.carsapp.car_details;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;

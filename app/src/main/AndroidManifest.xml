@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".LoginActivity"
+            android:name=".login.LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,10 +21,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CarsActivity"
+            android:name=".car_showroom.CarsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CarDetailsActivity"
+            android:name=".car_details.CarDetailsActivity"
             android:screenOrientation="portrait"></activity>
     </application>
 

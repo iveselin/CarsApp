@@ -1,4 +1,4 @@
-package com.example.cobeosijek.carsapp;
+package com.example.cobeosijek.carsapp.login;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,9 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.cobeosijek.carsapp.car_showroom.CarsActivity;
+import com.example.cobeosijek.carsapp.R;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
