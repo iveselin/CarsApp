@@ -1,12 +1,14 @@
 package com.example.cobeosijek.carsapp;
 
+import com.example.cobeosijek.carsapp.utilities.BaseModel;
+
 import java.util.List;
 
 /**
  * Created by cobeosijek on 17/10/2017.
  */
 
-public class Car {
+public class Car extends BaseModel {
 
     private int carID;
     private String carModel;
@@ -33,7 +35,7 @@ public class Car {
     }
 
     public String getCarModel() {
-        return carModel;
+        return getValueOrEmpty(carModel);
     }
 
     public int getCarAge() {
@@ -41,7 +43,7 @@ public class Car {
     }
 
     public String getCarRegistration() {
-        return carRegistration;
+        return getValueOrEmpty(carRegistration);
     }
 
     public int getCarTopSpeed() {

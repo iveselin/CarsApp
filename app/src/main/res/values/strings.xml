@@ -6,4 +6,5 @@
     <string name="input_password_hint">Input password here...</string>
     <string name="login_button_text">LOGIN</string>
     <string name="home_activity_title">Home</string>
+    <string name="car_details_title">Car details</string>
 </resources>
