@@ -57,18 +57,18 @@ public class CarDetailsActivity extends AppCompatActivity implements View.OnClic
         backV.setOnClickListener(this);
 
         if (carToShow != null) {
-            // TODO: 19/10/2017 getCarImages to set car images, not in constr.
-            ImageAdapter imageAdapter = new ImageAdapter(carToShow.getCarImages());
+            ImageAdapter imageAdapter = new ImageAdapter();
             carImageVP.setAdapter(imageAdapter);
-            if (imageAdapter.getCount() > 1) {
-                CircleIndicator circleIndicator = findViewById(R.id.indicator);
-                circleIndicator.setViewPager(carImageVP);
-            }
-
             carNameV.setText(carToShow.getCarModel());
             carAgeV.setText(String.format(getString(R.string.car_details_age_format), carToShow.getCarAge()));
             carTopSpeedV.setText(String.format(getString(R.string.car_details_speed_format), carToShow.getCarTopSpeed()));
             carRegistrationV.setText(String.format(getString(R.string.car_details_registration_format), carToShow.getCarRegistration()));
+
+            imageAdapter.setImages(carToShow.getCarImages());
+            if (imageAdapter.getCount() > 1) {
+                CircleIndicator circleIndicator = findViewById(R.id.indicator);
+                circleIndicator.setViewPager(carImageVP);
+            }
         }
     }
 

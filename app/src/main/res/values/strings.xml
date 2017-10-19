@@ -11,4 +11,6 @@
     <string name="car_details_speed_format">Top speed: %1$d km/h</string>
     <string name="car_details_registration_format">Registration: %1$s</string>
     <string name="car_list_age_format">Production year: %1$d</string>
+    <string name="login_email_error_text">Invalid email</string>
+    <string name="login_password_error_text">Password must contain minimum 6 characters!</string>
 </resources>

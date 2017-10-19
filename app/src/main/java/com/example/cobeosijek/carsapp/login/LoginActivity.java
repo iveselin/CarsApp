@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 import com.example.cobeosijek.carsapp.car_showroom.CarsActivity;
 import com.example.cobeosijek.carsapp.R;
+import com.example.cobeosijek.carsapp.utilities.StringUtils;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -41,24 +42,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    // TODO: 19/10/2017 string out
     private void checkUserInput(String email, String password) {
-        if (!isValidEmail(email)) {
-            emailInputET.setError("Invalid email");
+        if (!StringUtils.isValidEmail(email)) {
+            emailInputET.setError(getString(R.string.login_email_error_text));
             return;
         }
         if (password.length() < 6) {
-            passwordInputET.setError("Password must contain minimum 6 characters!");
+            passwordInputET.setError(getString(R.string.login_password_error_text));
             return;
         }
 
         emailInputET.getText().clear();
-        passwordInputET.setText("");
+        passwordInputET.getText().clear();
         startActivity(CarsActivity.getLaunchIntent(this, email));
-    }
-
-    // TODO: 19/10/2017 string utils
-    public static boolean isValidEmail(CharSequence target) {
-        return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
     }
 }

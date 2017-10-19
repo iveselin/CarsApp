@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import com.example.cobeosijek.carsapp.R;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,10 +18,13 @@ import java.util.List;
 
 public class ImageAdapter extends PagerAdapter {
 
-    private List<String> images;
+    private List<String> images = new ArrayList<>();
 
-    public ImageAdapter(List<String> images) {
-        this.images = images;
+    public void setImages(List<String> images) {
+        this.images.clear();
+        this.images.addAll(images);
+        notifyDataSetChanged();
+
     }
 
     @Override

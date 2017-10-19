@@ -18,7 +18,7 @@ import java.util.List;
  * Created by cobeosijek on 17/10/2017.
  */
 
-public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
+public class CarAdapter extends RecyclerView.Adapter<CarViewHolder> {
 
     public interface OnItemClickListener {
         void onCarClick(View view, int position);
@@ -38,15 +38,15 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
     }
 
     @Override
-    public CarAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CarViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View carView = inflater.inflate(R.layout.item_car, parent, false);
 
-        return new ViewHolder(carView, onItemClickListener);
+        return new CarViewHolder(carView, onItemClickListener);
     }
 
     @Override
-    public void onBindViewHolder(CarAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(CarViewHolder holder, int position) {
         if (cars.isEmpty() || cars.get(position) == null) {
             return;
         }
@@ -63,32 +63,5 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return cars.size();
-    }
-
-    // TODO: 19/10/2017 not inner, put in CarViewHolder class
-    static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-        private CarAdapter.OnItemClickListener listener;
-        ImageView carImage;
-        TextView carName;
-        TextView carAge;
-
-        public ViewHolder(View itemView, CarAdapter.OnItemClickListener listener) {
-            super(itemView);
-
-            this.carImage = itemView.findViewById(R.id.carImage);
-            this.carName = itemView.findViewById(R.id.carName);
-            this.carAge = itemView.findViewById(R.id.carAge);
-            this.listener = listener;
-
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-            if (listener != null) {
-                listener.onCarClick(view, getAdapterPosition());
-            }
-        }
     }
 }
