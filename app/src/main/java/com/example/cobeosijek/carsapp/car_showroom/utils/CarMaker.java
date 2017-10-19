@@ -18,7 +18,6 @@ public class CarMaker {
         List<Car> cars = new ArrayList<>();
         List<String> images = new ArrayList<>();
 
-        images.clear();
         images.add("http://automobilio.info/auto/Opel-Astra-H.jpg");
         images.add("https://automobili.hr/wp/wp-content/uploads/2017/03/rabljeni-automobil-savjet-opel-astra-provjera-detaljan-pregled-010.jpg");
         images.add("https://upload.wikimedia.org/wikipedia/commons/1/13/Opel_Astra_H_rear_20091011.jpg");
@@ -36,6 +35,12 @@ public class CarMaker {
         images = new ArrayList<>();
         images.add("http://automobilio.info/auto/Volkswagen-Polo-IV-9N.jpg");
         cars.add(new Car(4, "Volkswagen Polo", 2005, "PZ 178 CA", 120, images, false));
+
+        images = new ArrayList<>();
+        images.add("https://www.4wheelsnews.com/images/photo_galleries/original/26380/2017-skoda-octavia-facelift-7.jpg");
+        images.add("http://images.car.bauercdn.com/pagefiles/69828/skoda_octavia_review_09.jpg");
+        images.add("https://i.wheelsage.org/pictures/s/skoda/octavia_rs_combi/skoda_octavia_rs_combi_68.jpeg");
+        cars.add(new Car(5, "Skoda Octavia Combi", 2016, "OS 576 LS", 210, images, true));
 
         return cars;
     }

@@ -7,4 +7,8 @@
     <string name="login_button_text">LOGIN</string>
     <string name="home_activity_title">Home</string>
     <string name="car_details_title">Car details</string>
+    <string name="car_details_age_format">Age: %1$d</string>
+    <string name="car_details_speed_format">Top speed: %1$d km/h</string>
+    <string name="car_details_registration_format">Registration: %1$s</string>
+    <string name="car_list_age_format">Production year: %1$d</string>
 </resources>

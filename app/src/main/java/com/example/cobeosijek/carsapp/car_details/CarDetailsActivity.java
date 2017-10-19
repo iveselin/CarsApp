@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.example.cobeosijek.carsapp.car_showroom.Car;
 import com.example.cobeosijek.carsapp.R;
 
+import me.relex.circleindicator.CircleIndicator;
+
 public class CarDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String KEY_CAR_SENT = "car_sent";
@@ -34,9 +36,14 @@ public class CarDetailsActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_details);
 
-        carToShow = (Car) getIntent().getSerializableExtra(KEY_CAR_SENT);
+        getExtras();
         setUI();
+    }
 
+    private void getExtras() {
+        if (getIntent().hasExtra(KEY_CAR_SENT)) {
+            carToShow = (Car) getIntent().getSerializableExtra(KEY_CAR_SENT);
+        }
     }
 
     private void setUI() {
@@ -47,15 +54,21 @@ public class CarDetailsActivity extends AppCompatActivity implements View.OnClic
         carTopSpeedV = findViewById(R.id.carDetailsTopSpeed);
         carRegistrationV = findViewById(R.id.carDetailsRegistration);
 
-        ImageAdapter imageAdapter = new ImageAdapter(this, carToShow.getCarImages());
-        carImageVP.setAdapter(imageAdapter);
-
         backV.setOnClickListener(this);
 
-        carNameV.setText(carToShow.getCarModel());
-        carAgeV.setText(String.format("Age: %d", carToShow.getCarAge()));
-        carTopSpeedV.setText(String.format("Top speed: %d", carToShow.getCarTopSpeed()));
-        carRegistrationV.setText(String.format("Registration: %s", carToShow.getCarRegistration()));
+        if (carToShow != null) {
+            ImageAdapter imageAdapter = new ImageAdapter(carToShow.getCarImages());
+            carImageVP.setAdapter(imageAdapter);
+            if (imageAdapter.getCount() > 1) {
+                CircleIndicator circleIndicator = findViewById(R.id.indicator);
+                circleIndicator.setViewPager(carImageVP);
+            }
+
+            carNameV.setText(carToShow.getCarModel());
+            carAgeV.setText(String.format(getString(R.string.car_details_age_format), carToShow.getCarAge()));
+            carTopSpeedV.setText(String.format(getString(R.string.car_details_speed_format), carToShow.getCarTopSpeed()));
+            carRegistrationV.setText(String.format(getString(R.string.car_details_registration_format), carToShow.getCarRegistration()));
+        }
     }
 
     @Override

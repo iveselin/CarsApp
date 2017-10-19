@@ -1,6 +1,5 @@
 package com.example.cobeosijek.carsapp.car_details;
 
-import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +16,10 @@ import java.util.List;
  */
 
 public class ImageAdapter extends PagerAdapter {
-    Context context;
-    List<String> images;
 
-    public ImageAdapter(Context context, List<String> images) {
-        this.context = context;
+    private List<String> images;
+
+    public ImageAdapter(List<String> images) {
         this.images = images;
     }
 
@@ -45,11 +43,12 @@ public class ImageAdapter extends PagerAdapter {
         ImageView imageView = carView.findViewById(R.id.car_image);
         Picasso.with(imageView.getContext()).load(images.get(position)).into(imageView);
         container.addView(carView, 0);
+
         return carView;
     }
 
     @Override
-    public void destroyItem(ViewGroup container, int i, Object obj) {
+    public void destroyItem(ViewGroup container, int position, Object obj) {
         container.removeView((View) obj);
     }
 }

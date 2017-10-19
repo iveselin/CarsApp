@@ -41,7 +41,6 @@ public class SimpleFragmentPageAdapter extends FragmentPagerAdapter {
 
     @Override
     public String getPageTitle(int position) {
-        // Generate title based on item position
         return tabTitles.get(position);
     }
 }

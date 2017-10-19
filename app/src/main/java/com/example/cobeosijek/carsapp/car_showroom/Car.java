@@ -16,7 +16,6 @@ public class Car extends BaseModel {
     private String carRegistration;
     private int carTopSpeed;
     private List<String> carImages;
-
     private boolean isFavourite;
 
     public Car(int carID, String carModel, int carAge, String carRegistration, int carTopSpeed, List<String> carImages, boolean isFavourite) {

@@ -1,5 +1,6 @@
 package com.example.cobeosijek.carsapp.car_showroom;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,12 +47,15 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(CarAdapter.ViewHolder holder, int position) {
+        if (cars.isEmpty() || cars.get(position) == null) {
+            return;
+        }
         Car car = cars.get(position);
 
+        Context holderContext = holder.itemView.getContext();
         holder.carName.setText(car.getCarModel());
-        holder.carAge.setText("Production year: " + car.getCarAge());
-        Picasso.with(holder.itemView.getContext()).load(car.getCarImages().get(0)).resize(300, 200).into(holder.carImage);
-
+        holder.carAge.setText(String.format(holderContext.getString(R.string.car_list_age_format), car.getCarAge()));
+        Picasso.with(holderContext).load(car.getCarImages().get(0)).resize(300, 200).into(holder.carImage);
     }
 
     @Override

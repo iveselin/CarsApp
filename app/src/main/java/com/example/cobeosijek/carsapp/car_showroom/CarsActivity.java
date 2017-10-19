@@ -23,6 +23,7 @@ public class CarsActivity extends AppCompatActivity implements View.OnClickListe
     TextView userEmailTV;
     ImageView backIV;
     private List<String> tabTitles = new ArrayList<>();
+    private String userEmail;
 
     public static Intent getLaunchIntent(Context context, String email) {
         return new Intent(context, CarsActivity.class).putExtra(KEY_SEND_EMAIL, email);
@@ -32,15 +33,30 @@ public class CarsActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cars);
+
+        getExtras();
         setUI();
+    }
+
+    private void getExtras() {
+        if (getIntent().hasExtra(KEY_SEND_EMAIL) && getIntent().getStringExtra(KEY_SEND_EMAIL) != null) {
+            userEmail = getIntent().getStringExtra(KEY_SEND_EMAIL);
+        } else {
+            userEmail = "";
+        }
     }
 
     private void setUI() {
         userEmailTV = findViewById(R.id.userEmail);
-        userEmailTV.setText(getIntent().getStringExtra(KEY_SEND_EMAIL));
         backIV = findViewById(R.id.backImage);
+
+        userEmailTV.setText(userEmail);
         backIV.setOnClickListener(this);
 
+        setViewPager();
+    }
+
+    private void setViewPager() {
         tabTitles.add("All");
         tabTitles.add("Favourites");
 
@@ -51,7 +67,6 @@ public class CarsActivity extends AppCompatActivity implements View.OnClickListe
 
         ViewPager viewPager = findViewById(R.id.viewPager);
         viewPager.setAdapter(pageAdapter);
-
 
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);

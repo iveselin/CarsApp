@@ -28,12 +28,7 @@ public class PageFragment extends Fragment implements CarAdapter.OnItemClickList
 
     private static final String KEY_CAR_TYPE = "carTYPE";
 
-    RecyclerView carListRV;
-    CarAdapter carAdapter;
-    RecyclerView.LayoutManager layoutManager;
-    RecyclerView.ItemDecoration itemDecoration;
     private List<Car> carList = new ArrayList<>();
-
     private int carTypeFlag;
 
     public static PageFragment newInstance(int carTypeKey) {
@@ -78,14 +73,14 @@ public class PageFragment extends Fragment implements CarAdapter.OnItemClickList
     }
 
     private void setUI(View view) {
-        carListRV = view.findViewById(R.id.carList);
-        carAdapter = new CarAdapter();
-        layoutManager = new LinearLayoutManager(getActivity());
-        itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
         setCars();
+        CarAdapter carAdapter = new CarAdapter();
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
         carAdapter.setCarList(carList);
         carAdapter.setOnItemClickListener(this);
 
+        RecyclerView carListRV = view.findViewById(R.id.carList);
         carListRV.addItemDecoration(itemDecoration);
         carListRV.setLayoutManager(layoutManager);
         carListRV.setAdapter(carAdapter);
