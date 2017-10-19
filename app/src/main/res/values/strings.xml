@@ -2,8 +2,8 @@
     <string name="app_name">CarsApp</string>
     <string name="login_form_title">Login</string>
     <string name="login_title_text">Enter your email and password:</string>
-    <string name="input_email_hint">Input your email here...</string>
-    <string name="input_password_hint">Input password here...</string>
+    <string name="input_email_hint">Input your email here…</string>
+    <string name="input_password_hint">Input password here…</string>
     <string name="login_button_text">LOGIN</string>
     <string name="home_activity_title">Home</string>
     <string name="car_details_title">Car details</string>

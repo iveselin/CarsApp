@@ -30,6 +30,7 @@ public class PageFragment extends Fragment implements CarAdapter.OnItemClickList
 
     private List<Car> carList = new ArrayList<>();
     private int carTypeFlag;
+    private CarAdapter carAdapter;
 
     public static PageFragment newInstance(int carTypeKey) {
         Bundle args = new Bundle();
@@ -42,7 +43,7 @@ public class PageFragment extends Fragment implements CarAdapter.OnItemClickList
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        carTypeFlag = getArguments().getInt(KEY_CAR_TYPE);
+        carTypeFlag = getArguments().getInt(KEY_CAR_TYPE, 1);
     }
 
 
@@ -57,33 +58,32 @@ public class PageFragment extends Fragment implements CarAdapter.OnItemClickList
         setUI(view);
     }
 
-    private void setCars() {
-        if (carTypeFlag == Constants.KEY_ALL_CARS) {
-            carList = CarMaker.createCars();
-        } else if (carTypeFlag == Constants.KEY_FAVOURITE_CARS) {
-
-            List<Car> favourites = new ArrayList<>();
-            for (Car car : CarMaker.createCars()) {
-                if (car.isFavourite()) {
-                    favourites.add(car);
-                }
-            }
-            carList = favourites;
-        }
-    }
-
     private void setUI(View view) {
-        setCars();
-        CarAdapter carAdapter = new CarAdapter();
+        carAdapter = new CarAdapter();
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
-        carAdapter.setCarList(carList);
         carAdapter.setOnItemClickListener(this);
 
         RecyclerView carListRV = view.findViewById(R.id.carList);
         carListRV.addItemDecoration(itemDecoration);
         carListRV.setLayoutManager(layoutManager);
         carListRV.setAdapter(carAdapter);
+        setCars();
+    }
+
+    private void setCars() {
+        carList = CarMaker.createCars();
+
+        if (carTypeFlag == Constants.KEY_FAVOURITE_CARS) {
+            List<Car> favourites = new ArrayList<>();
+            for (Car car : carList) {
+                if (car.isFavourite()) {
+                    favourites.add(car);
+                }
+            }
+            carList = favourites;
+        }
+        carAdapter.setCarList(carList);
     }
 
     @Override

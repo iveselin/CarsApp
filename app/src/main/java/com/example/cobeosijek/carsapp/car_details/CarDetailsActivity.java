@@ -18,18 +18,18 @@ public class CarDetailsActivity extends AppCompatActivity implements View.OnClic
 
     private static final String KEY_CAR_SENT = "car_sent";
 
-    public static Intent getLaunchIntent(Context context, Car car) {
-        return new Intent(context, CarDetailsActivity.class).putExtra(KEY_CAR_SENT, car);
-    }
-
     ImageView backV;
+
     ViewPager carImageVP;
     TextView carNameV;
     TextView carAgeV;
     TextView carTopSpeedV;
     TextView carRegistrationV;
-
     Car carToShow;
+
+    public static Intent getLaunchIntent(Context context, Car car) {
+        return new Intent(context, CarDetailsActivity.class).putExtra(KEY_CAR_SENT, car);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +57,7 @@ public class CarDetailsActivity extends AppCompatActivity implements View.OnClic
         backV.setOnClickListener(this);
 
         if (carToShow != null) {
+            // TODO: 19/10/2017 getCarImages to set car images, not in constr.
             ImageAdapter imageAdapter = new ImageAdapter(carToShow.getCarImages());
             carImageVP.setAdapter(imageAdapter);
             if (imageAdapter.getCount() > 1) {

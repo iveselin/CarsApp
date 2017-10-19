@@ -55,7 +55,9 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
         Context holderContext = holder.itemView.getContext();
         holder.carName.setText(car.getCarModel());
         holder.carAge.setText(String.format(holderContext.getString(R.string.car_list_age_format), car.getCarAge()));
-        Picasso.with(holderContext).load(car.getCarImages().get(0)).resize(300, 200).into(holder.carImage);
+        if (car.getCarImages() != null && !car.getCarImages().isEmpty()) {
+            Picasso.with(holderContext).load(car.getCarImages().get(0)).into(holder.carImage);
+        }
     }
 
     @Override
@@ -63,7 +65,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
         return cars.size();
     }
 
-
+    // TODO: 19/10/2017 not inner, put in CarViewHolder class
     static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private CarAdapter.OnItemClickListener listener;

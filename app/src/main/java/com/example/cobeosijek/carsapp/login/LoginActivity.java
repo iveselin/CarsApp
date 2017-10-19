@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    // TODO: 19/10/2017 string out
     private void checkUserInput(String email, String password) {
         if (!isValidEmail(email)) {
             emailInputET.setError("Invalid email");
@@ -51,11 +52,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
 
-        emailInputET.setText("");
+        emailInputET.getText().clear();
         passwordInputET.setText("");
         startActivity(CarsActivity.getLaunchIntent(this, email));
     }
 
+    // TODO: 19/10/2017 string utils
     public static boolean isValidEmail(CharSequence target) {
         return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
     }
